@@ -1,5 +1,6 @@
 {
   "homepage": "https://kattkovacs.github.io/react-openfarm-plants",
+  "proxy": "https://openfarm-proxy-production.up.railway.app/api/crops",
   "name": "react-openfarm-plants",
   "version": "0.1.0",
   "private": true,
