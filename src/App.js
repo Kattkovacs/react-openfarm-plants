@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation } from "react-router-dom";
 
+// Backend API URL configuration
+const apiUrl = process.env.REACT_APP_API_URL || 'https://openfarm-proxy-prod.up.railway.app';
+
 // Helper to get unique categories from plants
 function getCategories(plants) {
   const categories = new Set();
@@ -144,7 +147,7 @@ function PlantList() {
         let allPlants = [];
         let previewTotalPages = 1;
         while (pagePreview <= previewTotalPages && allPlants.length < 60) {
-          const res = await fetch(`http://localhost:3001/api/crops?page=${pagePreview}`);
+          const res = await fetch(`${apiUrl}/api/crops?page=${pagePreview}`);
           if (!res.ok) throw new Error(`API returned status ${res.status}`);
           const data = await res.json();
           if (data && data.data) allPlants = allPlants.concat(data.data);
@@ -168,7 +171,7 @@ function PlantList() {
       if (append) setIsFetchingMore(true); else setLoading(true);
       setError(null);
       const familyQuery = category && category !== "All" ? `&family=${encodeURIComponent(category)}` : "";
-      const res = await fetch(`http://localhost:3001/api/crops?page=${pageToLoad}${familyQuery}`);
+      const res = await fetch(`${apiUrl}/api/crops?page=${pageToLoad}${familyQuery}`);
       if (!res.ok) throw new Error(`API returned status ${res.status}`);
       const data = await res.json();
       const newPlants = data && data.data ? data.data : [];
