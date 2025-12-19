@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, useCallback } from "react";
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate, useLocation } from "react-router-dom";
 
 // Backend API URL configuration
-const apiUrl = process.env.REACT_APP_API_URL || 'https://openfarm-proxy-prod.up.railway.app';
+const apiUrl = process.env.REACT_APP_API_URL || 'https://openfarm-proxy-prod.up.railway.app/api/crops';
 
 // Helper to get unique categories from plants
 function getCategories(plants) {
